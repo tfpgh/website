@@ -7,10 +7,10 @@
 }
 
 :root {
-    --bg: #1b1929;
-    --text: #d4d4d4;
-    --muted: #737373;
-    --accent: #e07a5f;
+    --bg: #151823;
+    --text: #e7e9ee;
+    --muted: #a2a9b8;
+    --accent: #f2a37e;
     --max-width: 640px;
 }
 
@@ -77,8 +77,8 @@ hr {
 .header {
     display: flex;
     align-items: flex-start;
-    gap: 2rem;
-    margin-left: calc(-150px - 2rem);
+    gap: 1.5rem;
+    margin-left: calc(-85px - 1.5rem);
 }
 
 .header img {
@@ -96,7 +96,7 @@ hr {
 
     .header {
         flex-direction: column;
-        gap: 1.75rem;
+        gap: 1.25rem;
         margin-left: 0;
     }
 
