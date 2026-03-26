@@ -1,16 +1,37 @@
 ---
-
+import Base from "@/layouts/Base.astro";
+import { Image } from "astro:assets";
+import profilePhoto from "@/assets/images/profile-photo.png";
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
-    </head>
-    <body>
-        <h1>Astro</h1>
-    </body>
-</html>
+<Base>
+    <div class="header">
+        <Image
+            src={profilePhoto}
+            alt="Profile photo of Toby Penner"
+            width={150}
+            height={150}
+            densities={[1.5, 2, 3]}
+        />
+        <div>
+            <h1>Toby Penner</h1>
+            <p>
+                I study computer science at Middlebury College. This summer I'm
+                at
+                <a href="https://comma.ai">comma.ai</a> working on self-driving cars.
+            </p>
+            <p>
+                This isn't just a personal website, it's a revolutionary&hellip;
+                just kidding. I love LLMs, but <strong
+                    >all writing here is my own</strong
+                >.
+            </p>
+            <div class="contact">
+                <a href="mailto:tobypenner01@gmail.com">email</a>
+                <a href="https://github.com/tfpgh">github</a>
+                <a href="https://linkedin.com/in/tobypenner">linkedin</a>
+            </div>
+        </div>
+    </div>
+    <hr />
+</Base>
