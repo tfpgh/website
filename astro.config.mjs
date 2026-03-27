@@ -10,7 +10,7 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontshare(),
-      name: "Switzer",
+      name: "Cabinet Grotesk",
       cssVariable: "--font-heading",
       weights: [400, 500, 600, 700, 800, 900],
     },

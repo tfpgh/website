@@ -7,10 +7,9 @@
 }
 
 :root {
-    --bg: #151823;
-    --text: #e7e9ee;
-    --muted: #a2a9b8;
-    --accent: #f2a37e;
+    --bg: #1a1e1b;
+    --text: #ece9e1;
+    --accent: #a7b59a;
     --max-width: 720px;
 }
 
@@ -19,6 +18,7 @@ html {
     color: var(--text);
     font-family: var(--font-body);
     font-size: 17px;
+    font-weight: 400;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -32,9 +32,10 @@ body {
 
 h1 {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 700;
     line-height: 1.2;
+    letter-spacing: 0.01em;
     color: #fff;
     margin-bottom: 0.5rem;
 }
@@ -61,11 +62,6 @@ a {
 
 a:hover {
     color: #fff;
-}
-
-.muted {
-    color: var(--muted);
-    font-size: 0.875rem;
 }
 
 hr {
