@@ -18,6 +18,7 @@ export default defineConfig({
       provider: fontProviders.fontshare(),
       name: "Sentient",
       cssVariable: "--font-body",
+      weights: [400, 500, 600, 700, 800, 900],
     },
   ],
 
