@@ -19,7 +19,7 @@ html {
     color: var(--text);
     font-family: var(--font-body);
     font-size: 17px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
