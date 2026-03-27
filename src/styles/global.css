@@ -10,6 +10,7 @@
     --bg: #161b17;
     --text: #e7eadf;
     --accent: #9eb089;
+    --accent-wash: #9eb08926;
     --max-width: 720px;
 }
 
@@ -55,13 +56,28 @@ p {
 }
 
 a {
+    display: inline-block;
+    padding: 0 0.09em;
     color: var(--accent);
+    background-image: linear-gradient(var(--accent-wash), var(--accent-wash));
+    background-repeat: no-repeat;
+    background-position: 0 45%;
+    background-size: 100% 63%;
     text-decoration: none;
-    transition: color 0.15s ease;
+    text-underline-offset: 0.16em;
+    transition:
+        color 0.15s ease,
+        background-size 0.15s ease,
+        background-position 0.15s ease,
+        text-decoration-thickness 0.15s ease;
 }
 
 a:hover {
     color: #fff;
+    background-size: 100% 82%;
+    background-position: 0 67%;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
 }
 
 hr {
