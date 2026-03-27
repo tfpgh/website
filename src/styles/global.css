@@ -20,7 +20,7 @@ html {
     font-family: var(--font-body);
     font-size: 17px;
     font-weight: 400;
-    line-height: 1.65;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -33,7 +33,7 @@ body {
 
 h1 {
     font-family: var(--font-heading);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: 0.01em;
@@ -57,27 +57,21 @@ p {
 
 a {
     display: inline-block;
-    padding: 0 0.09em;
+    padding: 0 0.2em;
     color: var(--accent);
     background-image: linear-gradient(var(--accent-wash), var(--accent-wash));
     background-repeat: no-repeat;
-    background-position: 0 45%;
-    background-size: 100% 63%;
+    background-position: 0 38%;
+    background-size: 100% 75%;
     text-decoration: none;
-    text-underline-offset: 0.16em;
     transition:
-        color 0.15s ease,
-        background-size 0.15s ease,
-        background-position 0.15s ease,
-        text-decoration-thickness 0.15s ease;
+        color 0.1s ease,
+        transform 0.1s ease;
 }
 
 a:hover {
     color: #fff;
-    background-size: 100% 82%;
-    background-position: 0 67%;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
+    transform: scale(1.05);
 }
 
 hr {
