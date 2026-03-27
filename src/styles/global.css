@@ -7,9 +7,9 @@
 }
 
 :root {
-    --bg: #1a1e1b;
-    --text: #ece9e1;
-    --accent: #a7b59a;
+    --bg: #161b17;
+    --text: #e7eadf;
+    --accent: #9eb089;
     --max-width: 720px;
 }
 
@@ -43,7 +43,7 @@ h1 {
 h2 {
     font-family: var(--font-heading);
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.3;
     color: #fff;
     margin-top: 2.5rem;
