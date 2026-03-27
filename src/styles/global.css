@@ -65,13 +65,15 @@ a {
     background-size: 100% 75%;
     text-decoration: none;
     transition:
-        color 0.1s ease,
-        transform 0.1s ease;
+        color 0.15s ease,
+        background-position 0.15s ease,
+        background-size 0.15s ease;
 }
 
 a:hover {
     color: #fff;
-    transform: scale(1.05);
+    background-position: 0 34%;
+    background-size: 100% 85%;
 }
 
 hr {
