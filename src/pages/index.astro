@@ -2,9 +2,28 @@
 import Base from "@/layouts/Base.astro";
 import { Image } from "astro:assets";
 import profilePhoto from "@/assets/images/profile-photo.png";
+
+const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Toby Penner",
+    url: Astro.site,
+    image: profilePhoto.src,
+    email: "mailto:tobypenner01@gmail.com",
+    alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Middlebury College",
+    },
+    sameAs: ["https://github.com/tfpgh", "https://linkedin.com/in/tobypenner"],
+};
 ---
 
-<Base>
+<Base
+    ogType="website"
+    title="Toby Penner"
+    description="Toby Penner—computer science at Middlebury."
+    jsonLD={personSchema}
+>
     <div class="header">
         <Image
             src={profilePhoto}

@@ -1,6 +1,27 @@
 ---
 import "@/styles/global.css";
 import { Font } from "astro:assets";
+import profilePhoto from "@/assets/images/profile-photo.png";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    ogType: "website" | "article";
+    title: string;
+    description: string;
+    image?: ImageMetadata;
+    jsonLD: Record<string, unknown>;
+}
+
+const {
+    ogType,
+    title,
+    description,
+    image = profilePhoto,
+    jsonLD,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image.src, Astro.site);
 ---
 
 <html lang="en">
@@ -8,11 +29,34 @@ import { Font } from "astro:assets";
         <meta charset="utf-8" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="sitemap" href="/sitemap-index.xml" />
+        <link rel="canonical" href={canonicalURL} />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
+        <meta name="description" content={description} />
+        <meta name="robots" content="index, follow" />
+
+        <meta property="og:type" content={ogType} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:site_name" content="Toby Penner" />
+        <meta property="og:image" content={imageURL} />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={imageURL} />
+
         <Font cssVariable="--font-heading" />
         <Font cssVariable="--font-body" />
-        <title>Toby Penner</title>
+
+        <title>{title}</title>
+
+        <script
+            is:inline
+            type="application/ld+json"
+            set:html={JSON.stringify(jsonLD)}
+        />
     </head>
     <body>
         <main>
