@@ -18,7 +18,21 @@ export default defineConfig({
       provider: fontProviders.fontshare(),
       name: "Sentient",
       cssVariable: "--font-body",
-      weights: [300, 700],
+      weights: [300, 500],
+    },
+    {
+      provider: fontProviders.local(),
+      name: "Noto Sans Symbols 2",
+      cssVariable: "--font-symbols",
+      options: {
+        variants: [
+          {
+            weight: 400,
+            style: "normal",
+            src: ["./src/assets/fonts/noto-sans-symbols-2-subset.woff2"],
+          },
+        ],
+      },
     },
   ],
 
