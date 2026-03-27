@@ -19,7 +19,7 @@ html {
     color: var(--text);
     font-family: var(--font-body);
     font-size: 17px;
-    line-height: 1.75;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -27,7 +27,7 @@ html {
 body {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 10rem 24px 0rem;
+    padding: 8rem 24px 3rem;
 }
 
 h1 {
