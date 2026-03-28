@@ -1,9 +1,9 @@
 *,
 *::before,
 *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 :root {
@@ -15,12 +15,12 @@
 }
 
 html {
-    background: var(--bg);
     color: var(--text);
     font-family: var(--font-body);
     font-size: 17px;
     font-weight: 300;
     line-height: 1.7;
+    background: var(--bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -32,29 +32,33 @@ body {
 }
 
 h1 {
+    margin-bottom: 0.5rem;
     font-family: var(--font-heading);
     font-size: 1.4rem;
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: 0.01em;
     color: #fff;
-    margin-bottom: 0.5rem;
 }
 
 p {
     margin-bottom: 1rem;
 }
 
+strong {
+    font-weight: 500;
+}
+
 a {
     display: inline-block;
     padding: 0 0.2em;
     color: var(--accent);
+    font-weight: 400;
+    text-decoration: none;
     background-image: linear-gradient(var(--accent-wash), var(--accent-wash));
     background-repeat: no-repeat;
     background-position: 0 38%;
     background-size: 100% 75%;
-    text-decoration: none;
-    font-weight: 400;
     transition:
         color 0.15s ease,
         background-position 0.15s ease,
@@ -68,13 +72,9 @@ a:hover {
 }
 
 hr {
+    margin: 2.5rem 0;
     border: none;
     border-top: 1px solid #222;
-    margin: 2.5rem 0;
-}
-
-strong {
-    font-weight: 500;
 }
 
 .header {
@@ -84,10 +84,10 @@ strong {
 }
 
 .header img {
-    border-radius: 50%;
-    object-fit: cover;
     flex-shrink: 0;
     margin-top: 0.3rem;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .contact {
@@ -99,6 +99,7 @@ strong {
 .symbols {
     font-family: var(--font-symbols);
     font-weight: 300;
+    letter-spacing: 0.1em;
 }
 
 @media (max-width: 720px) {
