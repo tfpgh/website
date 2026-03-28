@@ -27,7 +27,7 @@ export default defineConfig({
       options: {
         variants: [
           {
-            weight: 400,
+            weight: 300,
             style: "normal",
             src: ["./src/assets/fonts/inter-subset.woff2"],
           },
