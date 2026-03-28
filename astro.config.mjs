@@ -22,14 +22,14 @@ export default defineConfig({
     },
     {
       provider: fontProviders.local(),
-      name: "Noto Sans Symbols 2",
+      name: "Inter",
       cssVariable: "--font-symbols",
       options: {
         variants: [
           {
             weight: 400,
             style: "normal",
-            src: ["./src/assets/fonts/noto-sans-symbols-2-subset.woff2"],
+            src: ["./src/assets/fonts/inter-subset.woff2"],
           },
         ],
       },
