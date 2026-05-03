@@ -60,9 +60,9 @@ a {
     background-position: 0 38%;
     background-size: 100% 75%;
     transition:
-        color 0.15s ease,
-        background-position 0.15s ease,
-        background-size 0.15s ease;
+        color 0.08s ease,
+        background-position 0.08s ease,
+        background-size 0.08s ease;
 }
 
 a:hover {
