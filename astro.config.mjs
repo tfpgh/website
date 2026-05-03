@@ -20,20 +20,6 @@ export default defineConfig({
       cssVariable: "--font-body",
       weights: [300, 500],
     },
-    {
-      provider: fontProviders.local(),
-      name: "Inter",
-      cssVariable: "--font-symbols",
-      options: {
-        variants: [
-          {
-            weight: 300,
-            style: "normal",
-            src: ["./src/assets/fonts/inter-subset.woff2"],
-          },
-        ],
-      },
-    },
   ],
 
   integrations: [sitemap()],
