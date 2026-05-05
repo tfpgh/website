@@ -6,7 +6,12 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://tobypenner.com",
-
+  redirects: {
+    "/tag": {
+      status: 302,
+      destination: "https://youtu.be/HDy_ku9Yy9o",
+    },
+  },
   fonts: [
     {
       provider: fontProviders.fontshare(),
