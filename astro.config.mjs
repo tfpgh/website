@@ -9,7 +9,7 @@ export default defineConfig({
   redirects: {
     "/tag": {
       status: 302,
-      destination: "https://youtu.be/HDy_ku9Yy9o",
+      destination: "https://www.youtube.com/watch?v=HDy_ku9Yy9o",
     },
   },
   fonts: [
