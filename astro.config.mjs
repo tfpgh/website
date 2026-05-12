@@ -33,7 +33,6 @@ export default defineConfig({
   },
   integrations: [sitemap(), mdx()],
   prefetch: {
-    prefetchAll: true,
     defaultStrategy: "viewport",
   },
   experimental: {
