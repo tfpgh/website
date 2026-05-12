@@ -7,7 +7,7 @@ const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Toby Penner",
-    url: Astro.site,
+    url: Astro.site?.toString(),
     image: profilePhoto.src,
     email: "mailto:tobypenner01@gmail.com",
     alumniOf: {
@@ -19,17 +19,17 @@ const personSchema = {
 ---
 
 <Base
-    ogType="website"
-    title="Toby Penner"
+    type="home"
+    baseTitle="Toby Penner"
     description="Toby Penner—computer science at Middlebury."
     jsonLD={personSchema}
 >
     <div class="header">
         <Image
             src={profilePhoto}
-            alt="Profile photo of Toby Penner"
-            width={84}
-            height={84}
+            alt="Portrait of Toby Penner"
+            width={89}
+            height={89}
             densities={[1, 1.5, 2, 2.5, 3]}
             loading="eager"
         />
@@ -43,15 +43,115 @@ const personSchema = {
             </p>
             <p>
                 This isn't just a website, it's a vibrant tapestry of&hellip;
-                just kidding. <strong
-                    >All writing is my own—even em-dashes</strong
-                >.
+                just kidding. All writing is my own—even em-dashes.
             </p>
-            <div class="contact">
+            <div class="links">
                 <a href="mailto:tobypenner01@gmail.com">Email</a>
                 <a href="https://github.com/tfpgh">GitHub</a>
                 <a href="https://linkedin.com/in/tobypenner">LinkedIn</a>
             </div>
         </div>
     </div>
+
+    <hr />
+
+    <ul class="projects">
+        <li>
+            <h2>Tag, You're It</h2>
+            <div class="links">
+                <a href="/tag">Writeup</a>
+                <a href="https://www.youtube.com/watch?v=83YcsIVBEEk">Video</a>
+                <a href="/tag-poster.pdf" data-astro-prefetch="false">Poster</a>
+                <a href="https://github.com/tfpgh/tag_rl">GitHub</a>
+            </div>
+            <p>
+                I wanted to watch robots play tag, so I built two, pitted them
+                against each other in simulation for five (virtual) years, and
+                transfered the policies to the real world.
+            </p>
+        </li>
+        <li>
+            <h2>comma.ai Controls Challenge</h2>
+            <div class="links">
+                <a href="/comma-controls-challenge">Writeup</a>
+                <a href="https://github.com/tfpgh/controls_challenge">GitHub</a>
+            </div>
+            <p>
+                My two 1st place entries. I trained a fast neural controller by
+                behaviorally cloning a slow, expensive one. Then I cheated the
+                RNG by predicting the future.
+            </p>
+        </li>
+    </ul>
 </Base>
+
+<style>
+    .header {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--avatar-gap);
+    }
+
+    .header img {
+        flex-shrink: 0;
+        margin-top: 0.3rem;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    hr {
+        margin: 2.5rem 0 2.5rem var(--avatar-offset);
+    }
+
+    ul {
+        margin-bottom: 0;
+    }
+
+    p {
+        margin-bottom: 1.5rem;
+    }
+
+    .projects {
+        list-style: none;
+        margin-left: var(--avatar-offset);
+        padding-left: 0;
+    }
+
+    .projects li {
+        margin-bottom: 2.5rem;
+    }
+
+    .projects li:last-child {
+        margin-bottom: 0;
+    }
+
+    .projects h2 {
+        margin-top: 0;
+    }
+
+    .projects p {
+        margin-top: 0.5rem;
+        margin-bottom: 0;
+    }
+
+    .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    @media (max-width: 720px) {
+        .header {
+            flex-direction: column;
+        }
+
+        .header img {
+            margin-top: 0;
+        }
+
+        hr,
+        .projects {
+            margin-left: 0;
+        }
+    }
+</style>

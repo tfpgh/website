@@ -10,14 +10,41 @@
     --bg: #161b17;
     --text: #e7eadf;
     --accent: #a6ba92;
-    --accent-wash: #a6ba9226;
-    --max-width: 720px;
+    --accent-wash: color-mix(in srgb, var(--accent) 15%, transparent);
+    --accent-line: color-mix(in srgb, var(--accent) 50%, transparent);
+    --max-width: 660px;
+    --page-top: 8rem;
+    --avatar-size: 89px;
+    --avatar-gap: 1.4rem;
+    --avatar-offset: calc(var(--avatar-size) + var(--avatar-gap));
+    --surface: color-mix(in srgb, var(--bg), white 4%);
+    --muted: color-mix(in srgb, var(--text), transparent 25%);
+    --radius-media: 10px;
+    --radius-inline: 3px;
+
+    --code-sage: var(--accent);
+    --code-moss: #7ce078;
+    --code-pine: #5dd9c4;
+    --code-amber: #f0cc5b;
+    --code-terra: #f08a6a;
+
+    --astro-code-foreground: var(--text);
+    --astro-code-background: var(--surface);
+    --astro-code-token-comment: var(--muted);
+    --astro-code-token-punctuation: var(--text);
+    --astro-code-token-parameter: var(--text);
+    --astro-code-token-keyword: var(--code-sage);
+    --astro-code-token-function: var(--code-moss);
+    --astro-code-token-string: var(--code-amber);
+    --astro-code-token-string-expression: var(--code-amber);
+    --astro-code-token-constant: var(--code-terra);
+    --astro-code-token-link: var(--code-pine);
 }
 
 html {
     color: var(--text);
     font-family: var(--font-body);
-    font-size: 17px;
+    font-size: 1.1rem;
     font-weight: 300;
     line-height: 1.7;
     background: var(--bg);
@@ -28,11 +55,11 @@ html {
 body {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 8rem 24px 24px;
+    padding: var(--page-top) 24px;
 }
 
 h1 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     font-family: var(--font-heading);
     font-size: 1.4rem;
     font-weight: 700;
@@ -41,12 +68,99 @@ h1 {
     color: #fff;
 }
 
-p {
-    margin-bottom: 1rem;
+h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    color: #fff;
+}
+
+h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #fff;
 }
 
 strong {
     font-weight: 500;
+}
+
+code {
+    padding: 0.1em 0.3em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+    background: var(--accent-wash);
+    border-radius: var(--radius-inline);
+}
+
+ul,
+ol {
+    padding-left: 1.4rem;
+}
+
+li {
+    margin-bottom: 0.25rem;
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
+li :is(ul, ol) {
+    margin-top: 0.25rem;
+}
+
+blockquote {
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent-line);
+    color: var(--muted);
+}
+
+pre {
+    padding: 1rem 1.2rem;
+    overflow-x: auto;
+    background: var(--surface);
+    border-radius: var(--radius-media);
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+pre code {
+    padding: 0;
+    font-size: inherit;
+    background: none;
+    border-radius: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+th,
+td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--accent-line);
+}
+
+th {
+    font-weight: 500;
+    color: #fff;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--accent-line);
 }
 
 a {
@@ -71,41 +185,40 @@ a:hover {
     background-size: 100% 85%;
 }
 
-hr {
-    margin: 2.5rem 0;
-    border: none;
-    border-top: 1px solid #222;
+.post-body > * {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-.header {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.2rem;
+.post-body > * + * {
+    margin-top: 1.5rem;
 }
 
-.header img {
-    flex-shrink: 0;
-    margin-top: 0.3rem;
-    object-fit: cover;
-    border-radius: 50%;
+.post-body > * + h2 {
+    margin-top: 2.5rem;
 }
 
-.contact {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+.post-body > * + h3 {
+    margin-top: 2rem;
+}
+
+.post-body :is(lite-youtube, img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-media);
+    overflow: hidden;
+}
+
+.post-body > lite-youtube {
+    margin-block: 2rem;
+}
+
+.post-body > lite-youtube:first-child {
+    margin-top: 0;
 }
 
 @media (max-width: 720px) {
     body {
         padding: 24px;
-    }
-
-    .header {
-        flex-direction: column;
-    }
-
-    .header img {
-        margin-top: 0;
     }
 }

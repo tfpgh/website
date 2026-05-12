@@ -3,15 +3,11 @@ import { defineConfig, fontProviders } from "astro/config";
 
 import sitemap from "@astrojs/sitemap";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://tobypenner.com",
-  redirects: {
-    "/tag": {
-      status: 302,
-      destination: "https://www.youtube.com/watch?v=83YcsIVBEEk",
-    },
-  },
   fonts: [
     {
       provider: fontProviders.fontshare(),
@@ -30,6 +26,22 @@ export default defineConfig({
       subsets: ["latin"],
     },
   ],
-
-  integrations: [sitemap()],
+  markdown: {
+    shikiConfig: {
+      theme: "css-variables",
+    },
+  },
+  integrations: [sitemap(), mdx()],
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "viewport",
+  },
+  experimental: {
+    clientPrerender: true,
+  },
+  vite: {
+    css: {
+      transformer: "lightningcss",
+    },
+  },
 });

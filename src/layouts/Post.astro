@@ -1,0 +1,111 @@
+---
+import Base from "@/layouts/Base.astro";
+
+interface Props {
+    frontmatter: {
+        title: string;
+        description: string;
+        date: string;
+        image?: string;
+    };
+}
+
+const { frontmatter } = Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+}).format(new Date(frontmatter.date));
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const imageURL = frontmatter.image
+    ? new URL(frontmatter.image, Astro.site).toString()
+    : undefined;
+
+const postSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: frontmatter.title,
+    description: frontmatter.description,
+    datePublished: frontmatter.date,
+    dateModified: frontmatter.date,
+    ...(imageURL && { image: imageURL }),
+    mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonicalURL,
+    },
+    author: {
+        "@type": "Person",
+        name: "Toby Penner",
+        url: Astro.site?.toString(),
+    },
+};
+---
+
+<Base
+    type="post"
+    baseTitle={frontmatter.title}
+    description={frontmatter.description}
+    image={frontmatter.image}
+    twitterCard={frontmatter.image ? "summary_large_image" : "summary"}
+    jsonLD={postSchema}
+>
+    <a href="/" class="wordmark">← Toby Penner</a>
+    <h1>{frontmatter.title}</h1>
+    <time class="post-date" datetime={frontmatter.date}>{formattedDate}</time>
+    <div class="post-body">
+        <slot />
+    </div>
+</Base>
+
+<style is:global>
+    :root {
+        --wordmark-size: 0.9rem;
+        --wordmark-gap: 2rem;
+    }
+
+    body {
+        padding-top: calc(
+            var(--page-top) - var(--wordmark-size) - var(--wordmark-gap)
+        );
+    }
+
+    @media (max-width: 720px) {
+        body {
+            padding-top: 24px;
+        }
+    }
+</style>
+
+<style>
+    .wordmark {
+        display: block;
+        width: fit-content;
+        margin-bottom: var(--wordmark-gap);
+        padding: 0;
+        font-family: var(--font-body);
+        font-size: var(--wordmark-size);
+        font-weight: 300;
+        line-height: 1;
+        color: var(--accent);
+        background-image: none;
+    }
+
+    .wordmark:hover {
+        color: #fff;
+    }
+
+    h1 {
+        margin-bottom: 0.2rem;
+    }
+
+    .post-date {
+        display: block;
+        margin-bottom: 1.5rem;
+        font-family: var(--font-body);
+        font-size: var(--wordmark-size);
+        font-weight: 300;
+        color: var(--accent);
+    }
+</style>
