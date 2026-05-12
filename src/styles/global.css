@@ -163,7 +163,8 @@ hr {
     border-top: 1px solid var(--accent-line);
 }
 
-a {
+:where(p, li, blockquote) > a,
+.links a {
     display: inline-block;
     padding: 0 0.2em;
     color: var(--accent);
@@ -179,7 +180,8 @@ a {
         background-size 0.08s ease;
 }
 
-a:hover {
+:where(p, li, blockquote) > a:hover,
+.links a:hover {
     color: #fff;
     background-position: 0 34%;
     background-size: 100% 85%;
