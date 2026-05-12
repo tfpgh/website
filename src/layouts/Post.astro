@@ -51,7 +51,7 @@ const postSchema = {
     twitterCard={frontmatter.image ? "summary_large_image" : "summary"}
     jsonLD={postSchema}
 >
-    <a href="/" class="wordmark">← Toby Penner</a>
+    <a href="/" class="wordmark" data-astro-prefetch>← Toby Penner</a>
     <h1>{frontmatter.title}</h1>
     <time class="post-date" datetime={frontmatter.date}>{formattedDate}</time>
     <div class="post-body">
