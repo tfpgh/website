@@ -219,7 +219,7 @@ hr {
     margin-top: 0;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 800px) {
     body {
         padding: 24px;
     }
