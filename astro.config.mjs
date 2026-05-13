@@ -32,12 +32,13 @@ export default defineConfig({
     },
   },
   integrations: [sitemap(), mdx()],
-  // prefetch: {
-  //   defaultStrategy: "viewport",
-  // },
-  // experimental: {
-  //   clientPrerender: true,
-  // },
+  prefetch: {
+    // defaultStrategy: "viewport",
+    defaultStrategy: "tap",
+  },
+  experimental: {
+    clientPrerender: true,
+  },
   vite: {
     css: {
       transformer: "lightningcss",
