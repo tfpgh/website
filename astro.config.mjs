@@ -35,6 +35,9 @@ export default defineConfig({
   prefetch: {
     defaultStrategy: "viewport",
   },
+  build: {
+    format: "file",
+  },
   vite: {
     css: {
       transformer: "lightningcss",
