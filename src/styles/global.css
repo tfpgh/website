@@ -14,7 +14,7 @@
     --accent-line: color-mix(in srgb, var(--accent) 50%, transparent);
     --max-width: 660px;
     --page-top: 8rem;
-    --avatar-size: 89px;
+    --avatar-size: 75px;
     --avatar-gap: 1.4rem;
     --avatar-offset: calc(var(--avatar-size) + var(--avatar-gap));
     --surface: color-mix(in srgb, var(--bg), white 4%);
