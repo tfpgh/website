@@ -36,7 +36,7 @@ export default defineConfig({
     defaultStrategy: "viewport",
   },
   build: {
-    format: "file",
+    format: "directory",
   },
   vite: {
     css: {
