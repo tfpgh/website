@@ -33,11 +33,7 @@ export default defineConfig({
   },
   integrations: [sitemap(), mdx()],
   prefetch: {
-    // defaultStrategy: "viewport",
-    defaultStrategy: "tap",
-  },
-  experimental: {
-    clientPrerender: true,
+    defaultStrategy: "viewport",
   },
   vite: {
     css: {
