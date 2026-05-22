@@ -5,9 +5,47 @@ description: "I wanted to watch robots play tag, so I built two, pitted them aga
 image: "/tag/post-image.webp"
 date: "2026-05-12"
 ---
+import { Image } from "astro:assets";
+import robotDiagram from "@/assets/images/tag/robot-diagram.png";
 
-import { YouTube } from '@astro-community/astro-embed-youtube';
+<video autoplay loop muted playsinline preload="auto" fetchpriority="high" width="1280" height="720">
+    <source src="/tag/atf-clip.webm" type="video/webm"/>
+</video>
 
-<YouTube id="83YcsIVBEEk" poster="/tag/thumbnail.webp"/>
+I forced two robots to play tag against each other for five (simulated) years
+before releasing them into the real world. Why? It sounded really cool to watch!
 
-Writeup coming soon.
+This writeup is an overview of everything required to make tag happen and
+the results I observed. I also hope to motivate each part without devolving into
+the scary looking jargon of
+[reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning).
+
+### Hardware
+First, we need some **robots**. I looked for a little while and couldn't find
+any existing kits or designs that were affordable, fast, easily programmable,
+and didn't have loads of extra sensors. So I built my own.
+
+<Image
+    src={robotDiagram}
+    alt="Labeled diagram of one robot"
+    width={300}
+    height={300}
+    densities={[1, 1.5, 2, 2.5, 3]}
+    class="float-left   "
+/>
+
+There is a 500 mAh LiPo battery (1)
+
+I forgot to add a pulldown resistor on the motor driver control pins, so the
+motors spin at full speed for half-a-second everytime I plug the battery in.
+Oops!
+
+---
+
+This was an independent study at Middlebury College in Spring 2026.
+I have infinite gratitude for [Michael Linderman](https://www.cs.middlebury.edu/~mlinderman/)
+for advising such a ridiculous project.
+
+{/* import { YouTube } from '@astro-community/astro-embed-youtube';
+
+<YouTube id="83YcsIVBEEk" poster="/tag/thumbnail.webp"/>*/}

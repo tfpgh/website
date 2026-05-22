@@ -209,7 +209,7 @@ hr {
     margin-top: 2rem;
 }
 
-.post-body :is(lite-youtube, img) {
+.post-body :is(lite-youtube, img, video) {
     max-width: 100%;
     height: auto;
     border-radius: var(--radius-media);
@@ -222,6 +222,18 @@ hr {
 
 .post-body > lite-youtube:first-child {
     margin-top: 0;
+}
+
+.post-body .float-right {
+    float: right;
+    margin: 1.5rem 0 1.5rem 1.5rem;
+    shape-outside: margin-box;
+}
+
+.post-body .float-left {
+    float: left;
+    margin: 1.5rem 1.5rem 1.5rem 0;
+    shape-outside: margin-box;
 }
 
 @media (max-width: 800px) {
