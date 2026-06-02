@@ -10,9 +10,9 @@ const PATH_EXAMPLES: {
   to: number;
   toT: string;
 }[] = [
-  { from: 987531, fromT: "Banana", to: 598945, toT: "Albert Einstein" },
-  { from: 5213734, fromT: "Pizza", to: 4685947, toT: "Napoleon" },
-  { from: 6195974, fromT: "Sushi", to: 1157981, toT: "Black hole" },
+  { from: 1150847, fromT: "Bitcoin", to: 3490661, toT: "Julius Caesar" },
+  { from: 6292306, fromT: "Taylor Swift", to: 5362896, toT: "Quantum mechanics" },
+  { from: 4495202, fromT: "Minecraft", to: 2302155, toT: "Existentialism" },
 ];
 const fmt = (n: number) => n.toLocaleString("en-US");
 
