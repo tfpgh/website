@@ -1,0 +1,81 @@
+---
+import { Font } from "astro:assets";
+import WikiGraph from "@/components/wikigraph/WikiGraph";
+import { TILE_BASE_URL, META_JSON_URL } from "@/components/wikigraph/config";
+
+const title = "Wikigraph";
+const description = "An interactive visualization of all of English Wikipedia.";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL("/wikigraph/image.webp", Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="/icon.png" sizes="192x192" />
+
+        <!-- Warm the tile-server connection and pull meta.json during HTML parse,
+             before the React bundle hydrates and fires the fetch itself. -->
+        <link rel="preconnect" href={TILE_BASE_URL} crossorigin />
+        <link rel="preload" href={META_JSON_URL} as="fetch" crossorigin />
+        <link rel="canonical" href={canonicalURL} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content={description} />
+        <meta name="robots" content="index, follow" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:site_name" content="Toby Penner" />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:type" content="image/webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+            property="og:image:alt"
+            content="Wikigraph—an interactive visualization of all of English Wikipedia."
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+
+        <Font cssVariable="--font-heading" preload />
+        <Font cssVariable="--font-body" preload />
+
+        <title>{title}</title>
+    </head>
+    <body>
+        <WikiGraph client:only="react" />
+    </body>
+</html>
+
+<style is:global>
+    /* This page is standalone (no Base.astro), so it doesn't inherit the
+       site-wide reset. Pin border-box here so bordered controls render at their
+       declared size instead of 2px larger. */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #0c0c0c;
+        color: #e7eadf;
+        font-family: var(--font-body, ui-sans-serif, system-ui, sans-serif);
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+</style>

@@ -1,0 +1,166 @@
+/* Centered over the map region, kept clear of the 380px sidebar (+gutters). The
+   overlay itself is click-through; only the card captures pointer events. */
+.overlay {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px 416px 24px 24px;
+    pointer-events: none;
+    z-index: 8;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 26px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(22, 22, 26, 0.82);
+    box-shadow: 0 14px 48px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    color: #e7eadf;
+    text-align: center;
+    pointer-events: auto;
+    animation: statusIn 220ms ease both;
+}
+
+.label {
+    font-size: 13.5px;
+    letter-spacing: 0.01em;
+    color: rgba(231, 234, 223, 0.75);
+}
+
+.errTitle {
+    font-family: var(--font-heading, var(--font-body));
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.errText {
+    max-width: 260px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: rgba(231, 234, 223, 0.6);
+}
+
+.retry {
+    margin-top: 2px;
+    padding: 8px 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(231, 234, 223, 0.25);
+    background: rgba(231, 234, 223, 0.06);
+    color: #e7eadf;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition:
+        background 140ms ease,
+        border-color 140ms ease;
+}
+.retry:hover {
+    background: rgba(231, 234, 223, 0.12);
+    border-color: rgba(231, 234, 223, 0.4);
+}
+.retry:focus-visible {
+    outline: 2px solid rgba(231, 234, 223, 0.75);
+    outline-offset: 2px;
+}
+
+/* Ongoing refine — a quiet chip in the corner. */
+.busy {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 13px 8px 11px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(22, 22, 26, 0.7);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    color: rgba(231, 234, 223, 0.7);
+    font-size: 12px;
+    z-index: 8;
+    pointer-events: none;
+    animation: statusIn 200ms ease both;
+}
+
+.spinner {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2.5px solid rgba(231, 234, 223, 0.18);
+    border-top-color: rgba(231, 234, 223, 0.85);
+    animation: statusSpin 0.8s linear infinite;
+}
+
+.busySpinner {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid rgba(231, 234, 223, 0.18);
+    border-top-color: rgba(231, 234, 223, 0.7);
+    animation: statusSpin 0.8s linear infinite;
+}
+
+@keyframes statusSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes statusIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Rotation reads as motion; swap the spinners for a gentle opacity pulse. */
+@media (prefers-reduced-motion: reduce) {
+    .card,
+    .busy {
+        animation: none;
+    }
+    .spinner,
+    .busySpinner {
+        animation: statusPulse 1.4s ease-in-out infinite;
+    }
+}
+
+@keyframes statusPulse {
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 820px), (pointer: coarse) {
+    .overlay {
+        padding: calc(env(safe-area-inset-top) + 116px) 16px
+            calc(env(safe-area-inset-bottom) + 96px);
+    }
+
+    .card {
+        max-width: calc(100vw - 32px);
+        padding: 20px 22px;
+        border-radius: 18px;
+    }
+
+    .busy {
+        left: max(12px, env(safe-area-inset-left));
+        bottom: calc(env(safe-area-inset-bottom) + 12px);
+    }
+}

@@ -1,0 +1,298 @@
+/* Wider than the search bar to fit two pills + arrow + (input or to-pill).
+   Same top position so it visually replaces SearchBar in place. */
+.command {
+    position: fixed;
+    top: 64px;
+    left: calc((100vw - 398px) / 2);
+    transform: translateX(-50%);
+    width: min(560px, calc(100vw - 436px));
+    z-index: 20;
+    font-family: var(--font-body, ui-sans-serif, system-ui, sans-serif);
+    font-weight: 300;
+}
+
+.bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 42px;
+    padding: 0 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(22, 22, 26, 0.7);
+    color: rgba(231, 234, 223, 0.85);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.45);
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+}
+.command.focused .bar {
+    background: rgba(22, 22, 26, 0.94);
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 14px 48px rgba(0, 0, 0, 0.55);
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: none;
+    max-width: 40%;
+    height: 28px;
+    padding: 0 4px 0 9px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    color: #e7eadf;
+    font-size: 12.5px;
+}
+
+.pillSwatch {
+    width: 9px;
+    height: 9px;
+    border-radius: 3px;
+    flex: none;
+}
+
+.pillTitle {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pillClear {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    flex: none;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: rgba(231, 234, 223, 0.55);
+    cursor: pointer;
+    transition:
+        background 120ms ease,
+        color 120ms ease;
+}
+.pillClear:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e7eadf;
+}
+.pillClear:focus-visible,
+.flipBtn:focus-visible {
+    outline: 2px solid rgba(231, 234, 223, 0.75);
+    outline-offset: 2px;
+}
+
+.flipBtn {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    flex: none;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(231, 234, 223, 0.62);
+    cursor: pointer;
+    transition:
+        background 120ms ease,
+        color 120ms ease;
+}
+.flipBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e7eadf;
+}
+
+.arrow {
+    flex: none;
+    color: rgba(231, 234, 223, 0.45);
+}
+
+/* The cmdk root and its input fill the remaining width of the bar when the
+   "to" slot is still an input. */
+.commandHost {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #e7eadf;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 0 6px;
+}
+.input::placeholder {
+    color: rgba(231, 234, 223, 0.4);
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(22, 22, 26, 0.94);
+    box-shadow: 0 14px 48px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+}
+
+.list {
+    max-height: min(420px, calc(100vh - 96px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 6px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: #e7eadf;
+    font-size: 13.5px;
+    cursor: pointer;
+}
+/* cmdk drives selection for both arrow keys and pointer, marking the active
+   row with data-selected; without this the keyboard highlight is invisible. */
+.item[aria-selected="true"],
+.item[data-selected="true"] {
+    background: rgba(255, 255, 255, 0.08);
+}
+.item[aria-disabled="true"],
+.item[data-disabled="true"] {
+    color: rgba(231, 234, 223, 0.35);
+    cursor: not-allowed;
+}
+
+.itemSwatch {
+    width: 9px;
+    height: 9px;
+    border-radius: 3px;
+    flex: none;
+}
+
+.itemTitle {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hint {
+    padding: 12px;
+    font-size: 13px;
+    color: rgba(231, 234, 223, 0.4);
+}
+
+@media (max-width: 820px), (pointer: coarse) {
+    .command {
+        top: calc(env(safe-area-inset-top) + 54px);
+        left: max(12px, env(safe-area-inset-left));
+        right: max(12px, env(safe-area-inset-right));
+        width: auto;
+        transform: none;
+    }
+
+    .bar {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 36px;
+        grid-template-areas:
+            "from flip"
+            "to flip";
+        align-items: stretch;
+        height: auto;
+        min-height: 80px;
+        gap: 6px;
+        padding: 7px;
+        border-radius: 14px;
+        background: rgba(22, 22, 26, 0.9);
+    }
+
+    .bar > * {
+        min-width: 0;
+    }
+
+    .bar > :first-child {
+        grid-area: from;
+    }
+
+    .bar > :last-child {
+        grid-area: to;
+    }
+
+    .bar > .arrow,
+    .bar > .flipBtn {
+        grid-area: flip;
+        align-self: center;
+        justify-self: center;
+    }
+
+    .arrow {
+        width: 14px;
+        height: 14px;
+        transform: rotate(90deg);
+    }
+
+    .flipBtn {
+        width: 32px;
+        height: 32px;
+        min-height: auto;
+    }
+
+    .pill,
+    .commandHost {
+        width: 100%;
+        max-width: none;
+        min-height: 34px;
+    }
+
+    .pill {
+        height: 34px;
+        padding-left: 10px;
+        overflow: hidden;
+        font-size: 13px;
+    }
+
+    .pillClear {
+        width: 22px;
+        height: 22px;
+    }
+
+    .input {
+        min-height: 34px;
+        font-size: 16px;
+    }
+
+    .dropdown {
+        border-radius: 15px;
+    }
+
+    .list {
+        max-height: min(42dvh, 360px);
+        padding: 7px;
+    }
+
+    .item {
+        min-height: 42px;
+        padding: 9px 11px;
+        font-size: 14px;
+    }
+}

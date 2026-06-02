@@ -5,6 +5,8 @@ import sitemap from "@astrojs/sitemap";
 
 import mdx from "@astrojs/mdx";
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://tobypenner.com",
@@ -31,7 +33,7 @@ export default defineConfig({
       theme: "css-variables",
     },
   },
-  integrations: [sitemap(), mdx()],
+  integrations: [sitemap(), mdx(), react()],
   prefetch: {
     defaultStrategy: "viewport",
   },
