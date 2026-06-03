@@ -897,7 +897,7 @@ export default function WikiGraph() {
       <DeckGL
         views={view}
         viewState={viewState}
-        controller={true}
+        controller={{ inertia: 300 }}
         onViewStateChange={({ viewState, interactionState }) => {
           const userInteracted =
             interactionState?.isDragging ||

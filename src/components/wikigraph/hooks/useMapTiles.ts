@@ -15,6 +15,7 @@ import {
   WORLD_SIZE,
   ZOOM_OFFSET,
 } from "../config";
+import { compactLayout } from "../layout";
 
 const isAbortError = (error: unknown) => {
   if (typeof error === "string") return /aborted/i.test(error);
@@ -66,6 +67,7 @@ export function useMapTiles(dimOpacity: number) {
   const [rasterTileError, setRasterTileError] = useState(false);
   const [metaTileError, setMetaTileError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
+  const [rasterCacheSize] = useState(() => (compactLayout() ? 48 : 128));
 
   const retry = useCallback(() => {
     metaTilesRef.current.clear();
@@ -83,7 +85,7 @@ export function useMapTiles(dimOpacity: number) {
         data: NODE_TILE_URL,
         opacity: dimOpacity,
         maxRequests: -1,
-        maxCacheSize: 128,
+        maxCacheSize: rasterCacheSize,
         refinementStrategy: "no-overlap",
         tileSize: DECK_TILE_SIZE,
         zoomOffset: ZOOM_OFFSET,
@@ -117,7 +119,7 @@ export function useMapTiles(dimOpacity: number) {
           });
         },
       }),
-    [dimOpacity, reloadKey],
+    [dimOpacity, reloadKey, rasterCacheSize],
   );
 
   const metaLayer = useMemo(
