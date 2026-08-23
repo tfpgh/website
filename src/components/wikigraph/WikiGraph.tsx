@@ -5,6 +5,7 @@ import { animate, useMotionValueEvent, useMotionValue } from "motion/react";
 import Sidebar from "./Sidebar";
 import SearchBar from "./SearchBar";
 import PathBar from "./PathBar";
+import MobileNotice from "./MobileNotice";
 import tooltipStyles from "./HoverTooltip.module.css";
 import { type SearchResult } from "./search";
 import { type PathNode, useFindPath } from "./path";
@@ -894,6 +895,7 @@ export default function WikiGraph() {
 
   return (
     <>
+      <MobileNotice visible={compact} />
       <DeckGL
         views={view}
         viewState={viewState}
